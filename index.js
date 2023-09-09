@@ -11,7 +11,7 @@ const axios = require('axios');
 //Code.
 const app = express();
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://instabookticker.netlify.app', 'https://main--instabookticket.netlify.app', 'https://instabook-backend.onrender.com']
+    origin: ['http://localhost:5173', 'https://instabookticket.netlify.app', 'https://main--instabookticket.netlify.app', 'https://instabook-backend.onrender.com']
 }));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
