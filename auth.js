@@ -2,15 +2,15 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { MongoClient } = require('mongodb');
-const uri = process.env.MONGO_URL;
-const client = new MongoClient(uri);
+const url = process.env.MONGO_URL;
+const client = new MongoClient(url);
 client.connect();
 
 
 async function insertData(data) {
-    const db = client.db(process.env.DATABASE);
-    const coll1 = db.collection(process.env.COLL1);
-    const coll2 = db.collection(process.env.COLL2);
+    const db = client.db('instabook');
+    const coll1 = db.collection('UserCredentials');
+    const coll2 = db.collection('UserData');
     const userSchema = {
         username: data.username,
         name: data.name,
@@ -43,8 +43,8 @@ async function verifyToken(token) {
                 username:tokenData.username
             }
             // console.log(tokenData.username);
-            const db = client.db(process.env.DATABASE);
-            const coll2 = db.collection(process.env.COLL2)
+            const db = client.db('instabook');
+            const coll2 = db.collection('UserData')
             const query = await coll2.findOne(data);
             // console.log(query);
             if (query._id.toString() == tokenData.token) {
@@ -60,9 +60,9 @@ async function verifyToken(token) {
 
 
 async function checkLoginData(data) {
-    const db = client.db(process.env.DATABASE);
-    const coll1 = db.collection(process.env.COLL1);
-    const coll2 = db.collection(process.env.COLL2)
+    const db = client.db('instabook');
+    const coll1 = db.collection('UserCredentials');
+    const coll2 = db.collection('UserData')
     const data2 = { username: (data.username) }
     try {
         const query = await coll1.findOne(data);
@@ -93,9 +93,9 @@ async function checkLoginData(data) {
 
 
 async function checkUsername(data) {
-    const db = client.db(process.env.DATABASE);
-    const coll1 = db.collection(process.env.COLL1);
-    const coll2 = db.collection(process.env.COLL2);
+    const db = client.db('instabook');
+    const coll1 = db.collection('UserCredentials');
+    const coll2 = db.collection('UserData');
     const check = await coll1.findOne({ username: data.username });
     if (check == null) {
         if ('name' in data) {
