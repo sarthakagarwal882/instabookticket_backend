@@ -17,9 +17,6 @@ app.use(bodyParser.json())
 let port = process.env.PORT
 app.listen(8000 || port);
 
-const uri = process.env.MONGO_URL;
-const client = new MongoClient(uri);
-client.connect();
 
 auth(app);
 app.get('/', (res) => { })
