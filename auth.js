@@ -41,7 +41,6 @@ async function verifyToken(token) {
         try {
             let data = {
                 username:tokenData.username
-
             }
             // console.log(tokenData.username);
             const db = client.db(process.env.DATABASE);
@@ -73,7 +72,6 @@ async function checkLoginData(data) {
         else {
             try {
                 userData = await coll2.findOne(data2)
-                console.log(userData);
                 let expTime = '30 days'
                 let token = jwt.sign({token:userData._id,username:userData.username}, process.env.TOKEN, { expiresIn: expTime, audience: process.env.JWT_AUD });
                 let finalData = {
