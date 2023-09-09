@@ -24,14 +24,13 @@ const client = new MongoClient(uri);
 client.connect();
 
 auth(app);
-app.get('/',()=>{})
 
-function pingLink() {
-  const linkToPing = 'https://instabook-backend.onrender.com/'; // Replace with the link you want to ping
-let data=axios.get(linkToPing)
-data.then(res=>{})
-}
+// function pingLink() {
+//   const linkToPing = 'https://instabook-backend.onrender.com/'; // Replace with the link you want to ping
+// let data=axios.get(linkToPing)
+// data.then(res=>{})
+// }
 
-// Ping the link every 10 minutes (10 minutes = 600,000 milliseconds)
-const pingInterval = 10*60*1000;
-setInterval(pingLink, pingInterval);
+// // Ping the link every 10 minutes (10 minutes = 600,000 milliseconds)
+// const pingInterval = 10*60*1000;
+// setInterval(pingLink, pingInterval);
