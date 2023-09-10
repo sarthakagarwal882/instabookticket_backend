@@ -23,7 +23,7 @@ app.get('/', (res) => { })
 
 function pingLink() {
     const linkToPing = 'https://instabook-backend.onrender.com'; // Replace with the link you want to ping
-    let data = axios.get(linkToPing)
+    let data = axios.get(linkToPing+'/')
     data.then(res => { })
 }
 
