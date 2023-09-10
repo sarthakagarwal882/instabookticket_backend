@@ -4,6 +4,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const auth = require('./auth');
 const { default: axios } = require('axios');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -18,16 +20,20 @@ let port = process.env.PORT
 app.listen(8000 || port);
 
 
-// function pingLink() {
-//     const linkToPing = "https://instabook-backend.onrender.com/ping"; // Replace with the link you want to ping
-//     let data = axios.get(linkToPing)
-//     data.then(res => { })
-// }
+async function pingLink() {
+    try{
+        const linkToPing = "https://instabook-backend.onrender.com/ping"; // Replace with the link you want to ping
+        let data =await axios.get(linkToPing)
+    }
+    catch(e){
+        console.log('e');
+    }
+}
 
-// // Ping the link every 10 minutes (10 minutes = 600,000 milliseconds)
-// const pingInterval = 10 * 60 * 1000;
-// setInterval(pingLink, pingInterval);
+// Ping the link every 10 minutes (10 minutes = 600,000 milliseconds)
+const pingInterval = 1000*60*10;
+setInterval(pingLink, pingInterval);
 
-// app.get('/ping', (res) => { res.json('Ping Successfull') })
+app.get('/ping', (req,res) => { res.json('Ping Successfull') })
 
 auth(app);
