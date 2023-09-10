@@ -10,7 +10,7 @@ const auth = require('./auth');
 //Code.
 const app = express();
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://instabookticket.netlify.app']
+    origin: ['http://localhost:5173/', 'https://instabookticket.netlify.app/']
 }));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
